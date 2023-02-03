@@ -10,7 +10,7 @@
 #include <unistd.h>
 
 #define PORT 15635
-#define BACKLOG 5
+#define BACKLOG 10
 #define MAX_MSG_LEN 1024
 
 #define DEFAULT_EXT "application/octet-stream"
@@ -108,7 +108,6 @@ void url_preprocessing(char *url) {
     // Two pointers pointing to the same characters on url
     // pCheck is used to check if the next 3 characters is "%20", if so, 
     // pReplace, pointing to those 3 character will be set to ' '
-    // Otherwise, it'll 
     while(*pCheck != '\0') {
 
         if (*pCheck == '%' && *(pCheck + 1) == '2' && *(pCheck + 2) == '0') {
@@ -118,7 +117,7 @@ void url_preprocessing(char *url) {
             *pReplace++ = *pCheck++;
         }
     }
-    *pCheck = '\0';
+    *pReplace = '\0';
 }
 
 // Handle request from connection
@@ -157,6 +156,7 @@ void handle_connection(int cli_socket) {
     } else {
         url = strtok(url, "/");
         url_preprocessing(url);
+        //printf("%s", url);
         handle_GET(cli_socket,url);
     }
     
