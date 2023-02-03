@@ -2,7 +2,7 @@ CC=gcc
 CFLAGS=-I.
 DEPS=
 OBJ=server.o
-USERID=123456789
+USERID=505834475_505536013
 
 %.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
@@ -15,4 +15,4 @@ clean:
 	rm -rf *.o server *.tar.gz
 dist: tarball
 tarball: clean
-	tar -cvzf /tmp/$(USERID).tar.gz --exclude=./.vagrant . && mv /tmp/$(USERID).tar.gz .
+	tar -cvzf /tmp/$(USERID).tar.gz server.c Makefile README.md && mv /tmp/$(USERID).tar.gz .
