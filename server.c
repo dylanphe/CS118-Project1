@@ -114,6 +114,9 @@ void url_preprocessing(char *url) {
         if (*pCheck == '%' && *(pCheck + 1) == '2' && *(pCheck + 2) == '0') {
             *pReplace++ = ' ';
             pCheck += 3;
+        } else if (*pCheck == '%' && *(pCheck + 1) == '2' && *(pCheck + 2) == '5') {
+            *pReplace++ = '%';
+            pCheck += 3;
         } else {
             *pReplace++ = *pCheck++;
         }
