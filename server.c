@@ -26,7 +26,8 @@ void handle_GET(int cli_socket, char* filePath) {
         send(cli_socket, res_buffer, strlen(res_buffer), 0);
         perror("webserver: ERROR404=File Not Found! Closing connection...");
         close(cli_socket);
-        exit(EXIT_FAILURE);
+        //exit(EXIT_FAILURE);
+        return;
     }
 
     // Checking file size to set content-len
